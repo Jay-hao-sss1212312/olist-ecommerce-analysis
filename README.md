@@ -56,7 +56,10 @@ olist-ecommerce-analysis/
 ├── dashboard/
 │   └── README.md
 ├── reports/
-│   ├── figures/              # 图表截图
+│   ├── figures/              # 所有分析图与看板截图
+│   │    └──README.MD         # 图表命名规范
+│   ├── 01_data_quality.md    # 数据体检记录
+│   ├── 02_metrics_dictionary # 指标字典全项目唯一口径
 │   └── olist_analysis_memo.md
 ├── run_sql.py                # 一键建表并导出宽表
 ├── README.md
@@ -116,7 +119,7 @@ sql/03_user_summary.sql
 ## 6. 当前进度
 
 - [x] 目录与数据说明
-- [ ] 数据质量检查
+- [x] 数据质量检查
 - [ ] 订单宽表
 - [ ] 履约分析
 - [ ] 复购与 RFM 分析
