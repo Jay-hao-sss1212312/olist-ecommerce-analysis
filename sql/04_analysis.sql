@@ -42,7 +42,7 @@ SELECT
   AVG(is_repeat) AS repeat_rate
 FROM user_summary;
 
--- 5. 品类延迟率（如果 STRING_SPLIT 报错，先跳过这条）
+-- 5. 品类延迟率
 WITH category_orders AS (
   SELECT
     order_id,
@@ -63,7 +63,7 @@ GROUP BY 1
 HAVING COUNT(*) >= 100
 ORDER BY late_rate DESC;
 
--- 6. 高延迟卖家（至少 30 单）
+-- 6. 高延迟卖家
 WITH seller_orders AS (
   SELECT
     order_id,
