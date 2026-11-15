@@ -20,5 +20,5 @@
 - 支付表可能一单多行，先聚合再 join。
 - 评价表可能一单多条，先聚合再 join。
 - 商品明细一单多行，先聚合到订单级。
-- `olist_geolocation_dataset.csv` 有 100 万行，14 天版可以不用；地区分析用 `customers.customer_state` 即可。
+- `olist_geolocation_dataset.csv` 有 100 万行；
 - 原始数据不提交到 GitHub，`data/processed/` 也不提交。
