@@ -30,14 +30,14 @@
 
 ## 3. 指标口径
 
-| 指标 | 口径 |
-|---|---|
-| 有效订单 | `order_status = 'delivered'` |
-| GMV | `SUM(item_revenue + freight_value)`，按订单去重 |
-| 延迟交付 | 实际送达时间 > 预计送达时间 |
-| 复购 | 同一 `customer_unique_id` 有 ≥2 笔有效订单 |
-| 复购窗口 | 90 天或 180 天，全项目统一 |
-| 评分 | 按 `order_id` 去重后的平均 `review_score` |
+| 指标     | 口径                                            |
+| -------- | ----------------------------------------------- |
+| 有效订单 | `order_status = 'delivered'`                    |
+| GMV      | `SUM(item_revenue + freight_value)`，按订单去重 |
+| 延迟交付 | 实际送达时间 > 预计送达时间                     |
+| 复购     | 同一 `customer_unique_id` 有 ≥2 笔有效订单      |
+| 复购窗口 | 全观察期（2016-09至2018-10），不设90/180天窗口 |
+| 评分     | 按 `order_id` 去重后的平均 `review_score`       |
 
 ## 4. 目录结构
 
