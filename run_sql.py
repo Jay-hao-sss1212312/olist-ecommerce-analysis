@@ -8,8 +8,10 @@
 2. sql/02_order_wide.sql
 3. sql/03_user_summary.sql
 4. 将 order_wide 导出到 data/processed/order_wide.csv，供 Power BI 使用
+5. 将 user_summary 导出到 data/processed/user_summary.csv，供 Power BI 使用
+6. 将 state_priority 导出到 data/processed/state_priority.csv，供 Power BI 使用
 
-sql/04_analysis.sql 是探索性查询，建议在 Notebook 或 DuckDB 中逐条运行。
+sql/04_analysis.sql等 是探索性查询，建议在 Notebook 或 DuckDB 中逐条运行。
 """
 
 from pathlib import Path
@@ -50,7 +52,8 @@ def main() -> None:
     print(f"user_summary rows: {user_count}")
     print(f"exported: {export_path}")
     print(f"database: {DB_PATH}")
-
+    con.execute("COPY user_summary TO 'data/processed/user_summary.csv' (HEADER, DELIMITER ',')")
+    con.execute("COPY state_priority TO 'data/processed/state_priority.csv' (HEADER, DELIMITER ',')")
 
 if __name__ == "__main__":
     main()

@@ -19,7 +19,7 @@ __pycache__/
 venv/
 .env
 
-# Power BI（如需提交 pbix，删除下一行）
+# Power BI
 dashboard/*.pbix
 
 # 系统文件
