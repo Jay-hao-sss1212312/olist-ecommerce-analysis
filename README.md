@@ -1,10 +1,15 @@
 # Olist 电商履约体验与用户复购分析
 
 基于 Olist 巴西电商公开数据集（99,441 笔订单）的端到端数据分析项目。项目围绕「履约体验 → 用户满意度 → 复购」展开，使用 SQL 构建订单级宽表，结合 Python / Power BI 完成分析与可视化，并输出可执行的运营建议。
-```markdown
+
 > **版本** v2（迭代中）｜v1.0 为 2026-11 初版探索性分析。v2 变更：统一复购口径 · 新增州级超额延迟单 · 卖家门槛敏感性 · 用户级复购验证。
 
-![Dashboard 总览](reports/figures/dashboard_overview.png)
+|                     01 经营总览                     |                     02 履约体验                     |
+| :-------------------------------------------------: | :-------------------------------------------------: |
+| ![经营总览](reports/figures/dashboard_overview.png) | ![履约体验](reports/figures/dashboard_delivery.png) |
+
+![用户复购](reports/figures/dashboard_retention.png)
+
 
 ## 1. 业务问题
 
@@ -64,7 +69,7 @@ olist-ecommerce-analysis/           # 项目根目录
 │   └── README.md                   # 仪表盘截图
 ├── reports/
 │   ├── figures/                    # 所有分析图与看板截图
-│   │    └──README.MD               # 图表命名规范
+│   │   └── README.md               # 图表命名规范
 │   ├── 01_data_quality.md          # 数据体检记录
 │   ├── 02_metrics_dictionary       # 指标字典全项目唯一口径
 │   └── olist_analysis_memo.md      # 项目报告
@@ -127,7 +132,7 @@ sql/03_user_summary.sql
 ```python
 import duckdb
 con = duckdb.connect("olist.duckdb")
-con.sql(open("sql/05_state_priority.sql", encoding="utf-8").read()).df()
+con.sql(open("sql/05_state_priority.sql", encoding="utf-8").read()).df()```
 
 
 ## 6. 关键发现
@@ -138,13 +143,13 @@ con.sql(open("sql/05_state_priority.sql", encoding="utf-8").read()).df()
 
 > 口径与数字以 `reports/02_metrics_dictionary.md` 为准；完整论证见 `reports/olist_analysis_memo.md`。
 
-## 8. 业务建议
+## 7. 业务建议
 
 1. **按延迟订单绝对数而不是延迟率挑改善地区**，优先 RJ 一类大样本州（依据发现 1）。验证：该州延迟订单绝对数、延迟率、平均评分前后对比。
 2. **卖家门槛不能一刀切提到 100 单，改分层考核**：30 单门槛覆盖 627 家卖家（占卖家侧订单对 83.5%、延迟单 83.2%）；提到 100 单后只剩 210 家，订单对降至 60.3%、延迟单降至 **60.2%**——卖家数减 2/3 的代价是放弃 **23 个百分点**的延迟单覆盖，故「统一提到 100 单」不成立。改为三层：≥100 单按延迟率考核；30–99 单（417 家）按延迟单绝对数或「延迟单 + 投诉数」考核、不参与率排名；<30 单不单独考核，纳入卖家健康度抽查。依据 `sql/06_seller_threshold.sql`，比例分母为「卖家-订单对」而非 96,478 单订单。
 3. **对 7,826 单延迟订单做补偿与召回**，按延迟订单用户圈选而非 RFM「重要保持用户」（仅 191 人）（依据发现 3）。验证：A/B 或前后对照的平均评分与复购率。本项目未做实验，效果为待验证假设，未编造提升比例。
 
-## 9. 局限与复盘
+## 8. 局限与复盘
 
 - 数据只覆盖 2016-2018 年，不能直接代表当前市场。
 - 延迟与复购是相关关系，不能直接下因果结论。
