@@ -1,6 +1,7 @@
 # Dashboard 说明
 
 将 Power BI 文件保存为 `dashboard/olist_dashboard.pbix`。
+> pbix 因体积原因未入库。如需可编辑文件，请邮件 3087409713@qq.com，24 小时内回复。
 
 建议三页：
 
